@@ -70,7 +70,7 @@ button:hover{
 
 <form id="quizForm">
 
-<!-- حقول الاسم والايميل -->
+<!-- حقول الاسم والإيميل -->
 <div class="question">
 <label>الاسم:</label>
 <input type="text" id="studentName" placeholder="اكتب اسمك">
@@ -81,7 +81,7 @@ button:hover{
 <input type="email" id="studentEmail" placeholder="example@email.com">
 </div>
 
-<!-- باقي الأسئلة -->
+<!-- أسئلة الاختيار من متعدد وصح/خطأ -->
 <div class="section-title">أولاً: أسئلة الاختيار من متعدد (7 أسئلة)</div>
 
 <div class="question">
@@ -243,62 +243,71 @@ button:hover{
 <textarea name="q20"></textarea>
 </div>
 
-<!-- زرار إرسال -->
 <button type="button" onclick="saveQuiz()">إرسال الإجابة</button>
 
 </form>
 </div>
 
-<!-- سكربت تخزين الإجابات -->
-<script>
-function saveQuiz() {
+<!-- Firebase و السكربت -->
+<script type="module">
+  // Import Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
+  // Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyBcf4nCYjw4dZsgvEQvpN_FuAB6GVjxPF0",
+    authDomain: "el30l0mbebasataquiz.firebaseapp.com",
+    projectId: "el30l0mbebasataquiz",
+    storageBucket: "el30l0mbebasataquiz.firebasestorage.app",
+    messagingSenderId: "1082727795398",
+    appId: "1:1082727795398:web:d7b4689416e626f0aca5c7"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  window.saveQuiz = async function() {
     let name = document.getElementById("studentName").value.trim();
     let email = document.getElementById("studentEmail").value.trim();
 
-    if(name === "" || email === ""){
-        alert("اكتب الاسم والإيميل");
-        return;
+    if(!name || !email){
+      alert("اكتب الاسم والإيميل");
+      return;
     }
 
     let answers = [];
-
-    // إجابات الاختيار من متعدد وصح/خطأ
     for(let i=1; i<=14; i++){
-        let selected = document.querySelector(`input[name="q${i}"]:checked`);
-        answers.push(selected ? selected.value : "لم يجب");
+      let selected = document.querySelector(`input[name="q${i}"]:checked`);
+      answers.push(selected ? selected.value : "لم يجب");
     }
-
-    // إجابات المقالية
     for(let i=15; i<=20; i++){
-        let text = document.querySelector(`textarea[name="q${i}"]`).value;
-        answers.push(text || "لم يجب");
+      let text = document.querySelector(`textarea[name="q${i}"]`).value;
+      answers.push(text || "لم يجب");
     }
 
-    // جلب البيانات السابقة من LocalStorage
-    let users = JSON.parse(localStorage.getItem("quizUsers")) || [];
-
-    // إضافة الطالب الحالي
-    users.push({
+    try {
+      await addDoc(collection(db, "quizResults"), {
         name: name,
         email: email,
-        answers: answers
-    });
-
-    // حفظ البيانات
-    localStorage.setItem("quizUsers", JSON.stringify(users));
-
-    alert("تم حفظ الإجابات بنجاح ✅");
-
-    document.getElementById("quizForm").reset();
-}
-
-// Alt+Z لفتح صفحة الأدمن
-document.addEventListener("keydown", function(e){
-    if(e.altKey && e.key.toLowerCase() === "z"){
-        window.location.href = "admin.html";
+        answers: answers,
+        timestamp: serverTimestamp()
+      });
+      alert("تم حفظ الإجابات على Firebase ✅");
+      document.getElementById("quizForm").reset();
+    } catch (e) {
+      console.error("خطأ في الحفظ: ", e);
+      alert("حصل خطأ حاول مرة ثانية");
     }
-});
+  };
+
+  // Alt + Z لصفحة الأدمن
+  document.addEventListener("keydown", function(e){
+    if(e.altKey && e.key.toLowerCase() === "z"){
+      window.location.href = "admin.html";
+    }
+  });
 </script>
 
 </body>

@@ -1,141 +1,96 @@
 ﻿<!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="UTF-8" />
-<title>Admin Panel</title>
-
+<meta charset="UTF-8">
+<title>لوحة إدارة الكويز</title>
 <style>
-body{
+body {
     font-family: Arial;
-    background:#f6f6f6;
-    padding:20px;
+    direction: rtl;
+    background: #f4f6f9;
+    margin: 0;
 }
-
-/* شاشة اللوجين */
-#loginBox{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:90vh;
+.container {
+    width: 95%;
+    max-width: 1000px;
+    margin: 30px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
-
-.box{
-    background:white;
-    padding:30px;
-    border-radius:12px;
-    text-align:center;
-    box-shadow:0 0 10px rgba(0,0,0,.1);
+h2 {
+    color: #1e88e5;
+    text-align: center;
 }
-
-input{
-    padding:10px;
-    margin-top:10px;
-    width:200px;
-}
-
-button{
-    padding:8px 15px;
-    margin-top:10px;
-    cursor:pointer;
-}
-
-/* جدول البيانات */
-#adminPanel{
-    display:none;
-}
-
-table{
+table {
+    width: 100%;
     border-collapse: collapse;
-    width:100%;
-    background:white;
-    margin-top:20px;
+    margin-top: 20px;
 }
-
-th,td{
-    border:1px solid #ddd;
-    padding:8px;
-    text-align:center;
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: right;
 }
-
-th{
-    background:#eee;
+th {
+    background: #1e88e5;
+    color: white;
+}
+tr:nth-child(even) {
+    background: #f2f2f2;
 }
 </style>
 </head>
 <body>
 
-<!-- شاشة الباسورد -->
-<div id="loginBox">
-    <div class="box">
-        <h2>🔒 Admin Login</h2>
-        <input type="password" id="pass" placeholder="الباسورد">
-        <br>
-        <button onclick="checkPass()">دخول</button>
-    </div>
-</div>
+<div class="container">
+<h2>لوحة إدارة الكويز</h2>
 
-<!-- لوحة التحكم -->
-<div id="adminPanel">
-    <h2>📊 بيانات الممتحنين</h2>
-    <button onclick="logout()">تسجيل خروج</button>
+<table id="resultsTable">
+<tr>
+    <th>الاسم</th>
+    <th>الإيميل</th>
+    <th>الإجابات</th>
+</tr>
+</table>
 
-    <table id="dataTable">
-        <tr>
-            <th>الاسم</th>
-            <th>الإيميل</th>
-            <th>الإجابات</th>
-        </tr>
-    </table>
-</div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
-<script>
-const PASSWORD = "7720";
+// Firebase config
+const firebaseConfig = {
+    apiKey: "AIzaSyBcf4nCYjw4dZsgvEQvpN_FuAB6GVjxPF0",
+    authDomain: "el30l0mbebasataquiz.firebaseapp.com",
+    projectId: "el30l0mbebasataquiz",
+    storageBucket: "el30l0mbebasataquiz.firebasestorage.app",
+    messagingSenderId: "1082727795398",
+    appId: "1:1082727795398:web:d7b4689416e626f0aca5c7"
+};
 
-/* تسجيل دخول */
-function checkPass(){
-    let val = document.getElementById("pass").value;
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-    if(val === PASSWORD){
-        sessionStorage.setItem("admin","true");
-        showPanel();
-    }else{
-        alert("الباسورد غلط ❌");
-    }
-}
+// تحميل البيانات وعرضها
+async function loadResults() {
+    const querySnapshot = await getDocs(collection(db, "quizResults"));
+    const table = document.getElementById("resultsTable");
 
-/* إظهار لوحة الأدمن */
-function showPanel(){
-    document.getElementById("loginBox").style.display="none";
-    document.getElementById("adminPanel").style.display="block";
-    loadData();
-}
-
-/* تسجيل خروج */
-function logout(){
-    sessionStorage.removeItem("admin");
-    location.reload();
-}
-
-/* تحميل البيانات */
-function loadData(){
-    let users = JSON.parse(localStorage.getItem("quizUsers")) || [];
-
-    let table = document.getElementById("dataTable");
-
-    users.forEach(u=>{
-        let row = table.insertRow();
-
-        row.insertCell(0).innerText = u.name;
-        row.insertCell(1).innerText = u.email;
-        row.insertCell(2).innerText = Array.isArray(u.answers) ? u.answers.join(", ") : u.answers;
+    querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        const row = table.insertRow();
+        row.insertCell(0).innerText = data.name;
+        row.insertCell(1).innerText = data.email;
+        row.insertCell(2).innerText = data.answers.join(" | ");
     });
 }
 
-/* لو داخل قبل كده */
-if(sessionStorage.getItem("admin")==="true"){
-    showPanel();
-}
+// استدعاء التحميل عند فتح الصفحة
+loadResults();
 </script>
 
+</div>
 </body>
 </html>
