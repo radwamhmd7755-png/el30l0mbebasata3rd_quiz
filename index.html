@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>العلوم ببساطة - منصة كويزات</title>
+<style>
+body{
+font-family: Arial;
+direction: rtl;
+background:#f4f6f9;
+margin:0;
+}
+.container{
+width:90%;
+max-width:500px;
+margin:60px auto;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 0 15px rgba(0,0,0,0.1);
+}
+h1{
+text-align:center;
+color:#1e88e5;
+}
+h3{
+text-align:center;
+color:#555;
+}
+input,select,button{
+width:100%;
+padding:10px;
+margin:10px 0;
+border-radius:6px;
+border:1px solid #ccc;
+}
+button{
+background:#1e88e5;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+button:hover{
+background:#1565c0;
+}
+.note{
+color:red;
+font-size:14px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>العلوم ببساطة</h1>
+<h3>مس رضوي أبوالسعود</h3>
+<p style="text-align:center;">كويز على جزء الانحلال الحراري والإحلال البسيط</p>
+
+<input type="text" id="name" placeholder="اكتب اسمك">
+<input type="email" id="email" placeholder="اكتب ايميلك">
+<p class="note">درجتك هتتبعت على الايميل اللي هتكتبه</p>
+
+<select id="type">
+<option value="">اختار نوع الاشتراك</option>
+<option>برايفت</option>
+<option>منصة</option>
+<option>اونلاين</option>
+</select>
+
+<button onclick="startQuiz()">الدخول للاختبار</button>
+</div>
+
+<script>
+function startQuiz(){
+let name=document.getElementById("name").value;
+let email=document.getElementById("email").value;
+let type=document.getElementById("type").value;
+
+if(name=="" || email=="" || type==""){
+alert("من فضلك ادخل كل البيانات");
+return;
+}
+
+localStorage.setItem("studentName",name);
+localStorage.setItem("studentEmail",email);
+localStorage.setItem("studentType",type);
+
+window.location.href="quiz.html";
+}
+</script>
+
+</body>
+</html>

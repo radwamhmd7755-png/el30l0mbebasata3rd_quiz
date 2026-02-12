@@ -1,0 +1,305 @@
+﻿<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>اختبار شامل - الكيمياء</title>
+<style>
+body{
+    font-family:Arial;
+    direction:rtl;
+    background:#f4f6f9;
+    margin:0;
+}
+.container{
+    width:90%;
+    max-width:900px;
+    margin:30px auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 15px rgba(0,0,0,0.1);
+}
+h2{
+    color:#1e88e5;
+    text-align:center;
+}
+.section-title{
+    margin-top:30px;
+    font-weight:bold;
+    color:#444;
+}
+.question{
+    margin:20px 0;
+    padding:10px;
+    border-bottom:1px solid #ddd;
+}
+textarea{
+    width:100%;
+    height:80px;
+    margin-top:10px;
+    padding:8px;
+}
+input[type=text], input[type=email]{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+button{
+    width:100%;
+    padding:12px;
+    background:#1e88e5;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:16px;
+    margin-top:20px;
+}
+button:hover{
+    background:#1565c0;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h2>اختبار شامل - الدرس التمهيدي، الانحلال الحراري، والإحلال البسيط</h2>
+
+<form id="quizForm">
+
+<!-- حقول الاسم والايميل -->
+<div class="question">
+<label>الاسم:</label>
+<input type="text" id="studentName" placeholder="اكتب اسمك">
+</div>
+
+<div class="question">
+<label>الإيميل:</label>
+<input type="email" id="studentEmail" placeholder="example@email.com">
+</div>
+
+<!-- باقي الأسئلة -->
+<div class="section-title">أولاً: أسئلة الاختيار من متعدد (7 أسئلة)</div>
+
+<div class="question">
+1- عند تسخين كبريتات النحاس الزرقاء تتحول إلى مادة سوداء اللون:
+<br>
+<input type="radio" name="q1" value="أ"> نحاس
+<br>
+<input type="radio" name="q1" value="ب"> هيدروكسيد نحاس
+<br>
+<input type="radio" name="q1" value="ج"> أكسيد نحاس
+<br>
+<input type="radio" name="q1" value="د"> كبريتيد نحاس
+</div>
+
+<div class="question">
+2- أي عنصر يسبق الهيدروجين في متسلسلة النشاط الكيميائي ويحل محله؟
+<br>
+<input type="radio" name="q2" value="أ"> الذهب
+<br>
+<input type="radio" name="q2" value="ب"> الفضة
+<br>
+<input type="radio" name="q2" value="ج"> الخارصين
+<br>
+<input type="radio" name="q2" value="د"> البلاتين
+</div>
+
+<div class="question">
+3- الصيغة الكيميائية الصحيحة لمادة نيتريت الصوديوم:
+<br>
+<input type="radio" name="q3" value="أ"> NaNO3
+<br>
+<input type="radio" name="q3" value="ب"> NaNO2
+<br>
+<input type="radio" name="q3" value="ج"> Na2O
+<br>
+<input type="radio" name="q3" value="د"> Na
+</div>
+
+<div class="question">
+4- الغاز الذي يزيد توهج شظية مشتعلة هو:
+<br>
+<input type="radio" name="q4" value="أ"> الهيدروجين
+<br>
+<input type="radio" name="q4" value="ب"> الأكسجين
+<br>
+<input type="radio" name="q4" value="ج"> ثاني أكسيد الكربون
+<br>
+<input type="radio" name="q4" value="د"> النيتروجين
+</div>
+
+<div class="question">
+5- عند إضافة المغنيسيوم إلى محلول كبريتات النحاس، يتكون راسب:
+<br>
+<input type="radio" name="q5" value="أ"> أزرق
+<br>
+<input type="radio" name="q5" value="ب"> أسود
+<br>
+<input type="radio" name="q5" value="ج"> أحمر
+<br>
+<input type="radio" name="q5" value="د"> أخضر
+</div>
+
+<div class="question">
+6- العناصر الفلزية في المتسلسلة ترتب تنازلياً حسب:
+<br>
+<input type="radio" name="q6" value="أ"> الصلابة
+<br>
+<input type="radio" name="q6" value="ب"> النشاط الكيميائي
+<br>
+<input type="radio" name="q6" value="ج"> الانصهار
+<br>
+<input type="radio" name="q6" value="د"> الوزن الذري
+</div>
+
+<div class="question">
+7- تستغرق قطعة الألومنيوم وقتاً قبل التفاعل مع HCl بسبب طبقة:
+<br>
+<input type="radio" name="q7" value="أ"> كلوريد الألومنيوم
+<br>
+<input type="radio" name="q7" value="ب"> هيدروكسيد الألومنيوم
+<br>
+<input type="radio" name="q7" value="ج"> أكسيد الألومنيوم
+<br>
+<input type="radio" name="q7" value="د"> كبريتات الألومنيوم
+</div>
+
+<div class="section-title">ثانياً: صح أم خطأ (7 أسئلة)</div>
+
+<div class="question">
+8- الصيغة الكيميائية لملح كلوريد الكالسيوم هي CaCl ( )<br>
+<input type="radio" name="q8" value="صح"> صح
+<input type="radio" name="q8" value="خطأ"> خطأ
+</div>
+
+<div class="question">
+9- تنحل معظم كربونات الفلزات بالحرارة إلى أكسيد الفلز وغاز الهيدروجين ( )<br>
+<input type="radio" name="q9" value="صح"> صح
+<input type="radio" name="q9" value="خطأ"> خطأ
+</div>
+
+<div class="question">
+10- النحاس يحل محل هيدروجين الحمض لأنه يليه في متسلسلة النشاط الكيميائي ( )<br>
+<input type="radio" name="q10" value="صح"> صح
+<input type="radio" name="q10" value="خطأ"> خطأ
+</div>
+<div class="question">
+11- لون أكسيد الزئبق أحمر ولون الزئبق فضي ( )<br>
+<input type="radio" name="q11" value="صح"> صح
+<input type="radio" name="q11" value="خطأ"> خطأ
+</div>
+
+<div class="question">
+12- عند انحلال نترات الصوديوم يتصاعد غاز الأكسجين ويتحول لونها من الأبيض للأبيض المصفر ( )<br>
+<input type="radio" name="q12" value="صح"> صح
+<input type="radio" name="q12" value="خطأ"> خطأ
+</div>
+
+<div class="question">
+13- البوتاسيوم (K) أقل نشاطاً من الصوديوم (Na) ( )<br>
+<input type="radio" name="q13" value="صح"> صح
+<input type="radio" name="q13" value="خطأ"> خطأ
+</div>
+
+<div class="question">
+14- تفاعل إحلال فلز محل هيدروجين الماء يكون مصحوباً بفرقعة شديدة ( )<br>
+<input type="radio" name="q14" value="صح"> صح
+<input type="radio" name="q14" value="خطأ"> خطأ
+</div>
+
+<div class="section-title">ثالثاً: أسئلة مقالية (6 أسئلة)</div>
+
+<div class="question">
+15- وضح بطريقة "المقص": كتابة الصيغة الكيميائية لـ كبريتات الألومنيوم
+<textarea name="q15"></textarea>
+</div>
+
+<div class="question">
+16- علل: لا يحل النحاس محل هيدروجين الحمض بينما يحل الخارصين محله
+<textarea name="q16"></textarea>
+</div>
+
+<div class="question">
+17- ماذا يحدث عند وضع قطعة من الصوديوم في الماء؟ (الملاحظة والمعادلة الموزونة)
+<textarea name="q17"></textarea>
+</div>
+
+<div class="question">
+18- وضح بالمعادلات الرمزية الموزونة: أثر الحرارة على هيدروكسيد النحاس الأزرق
+<textarea name="q18"></textarea>
+</div>
+
+<div class="question">
+19- سؤال المتفوقين: لماذا يفضل عدم حفظ محلول نترات الفضة في أواني من الألومنيوم؟
+<textarea name="q19"></textarea>
+</div>
+
+<div class="question">
+20- استخرج الكلمة غير المناسبة ثم اذكر الرابط: (الذهب - الفضة - البلاتين - الصوديوم)
+<textarea name="q20"></textarea>
+</div>
+
+<!-- زرار إرسال -->
+<button type="button" onclick="saveQuiz()">إرسال الإجابة</button>
+
+</form>
+</div>
+
+<!-- سكربت تخزين الإجابات -->
+<script>
+function saveQuiz() {
+
+    let name = document.getElementById("studentName").value.trim();
+    let email = document.getElementById("studentEmail").value.trim();
+
+    if(name === "" || email === ""){
+        alert("اكتب الاسم والإيميل");
+        return;
+    }
+
+    let answers = [];
+
+    // إجابات الاختيار من متعدد وصح/خطأ
+    for(let i=1; i<=14; i++){
+        let selected = document.querySelector(`input[name="q${i}"]:checked`);
+        answers.push(selected ? selected.value : "لم يجب");
+    }
+
+    // إجابات المقالية
+    for(let i=15; i<=20; i++){
+        let text = document.querySelector(`textarea[name="q${i}"]`).value;
+        answers.push(text || "لم يجب");
+    }
+
+    // جلب البيانات السابقة من LocalStorage
+    let users = JSON.parse(localStorage.getItem("quizUsers")) || [];
+
+    // إضافة الطالب الحالي
+    users.push({
+        name: name,
+        email: email,
+        answers: answers
+    });
+
+    // حفظ البيانات
+    localStorage.setItem("quizUsers", JSON.stringify(users));
+
+    alert("تم حفظ الإجابات بنجاح ✅");
+
+    document.getElementById("quizForm").reset();
+}
+
+// Alt+Z لفتح صفحة الأدمن
+document.addEventListener("keydown", function(e){
+    if(e.altKey && e.key.toLowerCase() === "z"){
+        window.location.href = "admin.html";
+    }
+});
+</script>
+
+</body>
+</html>
